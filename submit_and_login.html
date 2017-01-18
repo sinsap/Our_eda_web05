@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>submit_and_login</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        function postData() {
+            var data = {};
+            data.username = $("#username").val();
+            data.password = $("#password").val();
+            if (/^[A-Z][a-zA-Z0-9]{5,16}$/.test(data.username)) {
+                $.ajax("http://localhost:3000", {
+                    type:"post",
+                    data: data,
+                    dataType: 'text',
+                    success: function (response) {
+                        $('#res').text(response.toString());
+                    },
+                    error: function (req, err) {
+                        $('#res').text('Error');
+                    }
+                });
+            }
+            else {
+                $('#res').text('该用户名不符合规范');
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bootstrap.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form action="http://localhost:3000/?action=login" role="form" method="post">
+                <div class="form-group">
+                    <label for="username">用户名:</label>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码：</label>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="密码">
+                </div>
+                <div class="form-group" style="text-align: center">
+                    <input type="submit" class="btn" value="跳转">
+                </div>
+            </form>
+            <div class="form-group" style="text-align: center">
+                <button class="btn" onclick="postData()" >
+                    提交（不刷新页面）
+                </button>
+                <div>响应内容：<b id="res"></b></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
