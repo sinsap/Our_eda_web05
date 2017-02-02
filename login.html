@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>submit_and_login</title>
+    <title>额，登录还不知道怎么做</title>
 
     <!-- Bootstrap -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -15,13 +15,11 @@
     <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-        var map = [];
+    <!--<script>
         function postData() {
             var data = {};
             data.username = $("#username").val();
             data.password = $("#password").val();
-            map.push(data);
             if (/^[A-Z0-9a-z]{5,16}$/.test(data.username)) {
                 $.ajax("http://localhost:3000", {
                     type: "post",
@@ -39,17 +37,7 @@
                 $('#res').text('该用户名不符合规范');
             }
         }
-        function save(password) {
-            if(/^[A-Z]+$/.test(password))
-                $('#safety').text('全为大写字母，安全程度低');
-            else if(/^[a-z]+$/.test(password))
-                $('#safety').text('全为小写字母，安全程度低');
-            else if(/^[0-9]+$/.test(password))
-                $('#safety').text('全为数字，安全程度低');
-            else
-                $('#safety').text('');
-        }
-    </script>
+    </script>-->
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -80,8 +68,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">密码：</label>
-                    <input class="form-control" type="text" id="password" name="password" placeholder="密码" oninput="save(this.value)">
-                    <div>密码安全程度：<b id="safety"></b></div>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="密码">
                 </div>
                 <div class="form-group" style="text-align: center">
                     <input type="submit" class="btn" value="跳转">
@@ -89,7 +76,7 @@
             </form>
             <div class="form-group" style="text-align: center">
                 <button class="btn" onclick="postData()">
-                    提交（不刷新页面）可登录
+                    提交（不刷新页面）
                 </button>
                 <div>响应内容：<b id="res"></b></div>
             </div>
